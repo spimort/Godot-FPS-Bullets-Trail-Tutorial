@@ -33,6 +33,7 @@ func _on_fire():
 	if _ray_cast.is_colliding():
 		bullet_trail.max_distance = _muzzle_flash_marker.global_position.distance_to( \
 			_ray_cast.get_collision_point());
+		look_at_point = _ray_cast.get_collision_point();
 
 	_muzzle_flash_marker.add_child(bullet_trail);
 	bullet_trail.look_at(look_at_point, Vector3.UP);

@@ -56,6 +56,7 @@ public partial class Player : Node3D {
             bulletTrail.MaxDistance = this._muzzleFlashMarker.GlobalPosition.DistanceTo(
 				this._rayCast.GetCollisionPoint()
 			);
+			lookAtPoint = this._rayCast.GetCollisionPoint();
 		}
 
 		this._muzzleFlashMarker.AddChild(bulletTrail);
