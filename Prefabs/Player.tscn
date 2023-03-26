@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxxwndcmcs1b6"]
+
+[ext_resource type="PackedScene" uid="uid://dqahu14igv5pv" path="res://Prefabs/BulletTrail.tscn" id="1_fs672"]
+[ext_resource type="Script" path="res://Scripts/CSharp/Player.cs" id="1_whhgq"]
+[ext_resource type="PackedScene" uid="uid://dd8efytktnmh7" path="res://Prefabs/MuzzleFlash.tscn" id="3_aws40"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p35pi"]
+albedo_color = Color(0.156863, 0.156863, 0.156863, 1)
+metallic = 1.0
+metallic_specular = 0.12
+
+[sub_resource type="BoxMesh" id="BoxMesh_vrgb3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnku3"]
+albedo_color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7qqq"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_whhgq")
+HeadPath = NodePath("Head")
+RayCastPath = NodePath("Head/RayCast3D")
+MuzzleFlashMarkerPath = NodePath("Head/Weapon/MuzzleFlash")
+BulletTrailPrefab = ExtResource("1_fs672")
+MuzzleFlashPrefab = ExtResource("3_aws40")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Weapon" type="Node3D" parent="Head"]
+transform = Transform3D(0.999758, 0, 0.0219894, 0, 1, 0, -0.0219894, 0, 0.999758, 0.24596, -0.223958, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Weapon"]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.548934, 0, 0, -0.77851)
+material_override = SubResource("StandardMaterial3D_p35pi")
+mesh = SubResource("BoxMesh_vrgb3")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Head/Weapon"]
+transform = Transform3D(0.055, 0, 0, 0, 0.227916, 0, 0, 0, 0.055, 0, -0.0906903, -0.535537)
+material_override = SubResource("StandardMaterial3D_jnku3")
+mesh = SubResource("BoxMesh_s7qqq")
+
+[node name="MuzzleFlash" type="Marker3D" parent="Head/Weapon"]
+transform = Transform3D(1, 0, 1.11759e-08, 0, 1, 0, -1.11759e-08, 0, 1, 1.7032e-05, 0, -1.05443)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -500)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca2e42tsuouka"]
+
+[ext_resource type="Texture2D" uid="uid://xaa2r5gmxnlo" path="res://Assets/Textures/Dark/texture_01.png" id="1_w4arl"]
+[ext_resource type="Texture2D" uid="uid://bfpupgurt1hwu" path="res://Assets/Textures/Orange/texture_01.png" id="2_j4wuj"]
+[ext_resource type="PackedScene" uid="uid://cxxwndcmcs1b6" path="res://Prefabs/Player.tscn" id="3_3uxs2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5xe1"]
+albedo_texture = ExtResource("1_w4arl")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp1kj"]
+albedo_texture = ExtResource("2_j4wuj")
+
+[node name="MainScene" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_x5xe1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -8.19286, 3.5, -3)
+size = Vector3(1, 4, 6)
+material = SubResource("StandardMaterial3D_tp1kj")
+
+[node name="Player" parent="." instance=ExtResource("3_3uxs2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, 0)

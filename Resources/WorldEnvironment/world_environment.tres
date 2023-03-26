@@ -1,0 +1,19 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://buphhk6unblrh"]
+
+[ext_resource type="Texture2D" uid="uid://bh88lbqrvitb7" path="res://Assets/Images/panorama_sky.jpg" id="2_1un87"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_f34pv"]
+panorama = ExtResource("2_1un87")
+
+[sub_resource type="Sky" id="Sky_vkicb"]
+sky_material = SubResource("PanoramaSkyMaterial_f34pv")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_vkicb")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+glow_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 1.46
+adjustment_saturation = 1.61
